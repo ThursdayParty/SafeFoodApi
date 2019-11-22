@@ -1,10 +1,10 @@
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/bestfood?serverTimezone=UTC
-    username: ssafy
-    password: ssafy
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
     initialization-mode: always
   jpa:
     hibernate:
@@ -15,7 +15,9 @@ spring:
     user:
       name: test
       password: test
-    
+  h2:
+    console:
+      enabled: true
 server:
   port: 9090
   
