@@ -22,7 +22,7 @@ public class QnaBoardService {
 
 	public void update(long boardId, UpdateQnaBoardRequestDto updateQnaBoardRequestDto) {
 		QnaBoard qb = repo.findById(boardId)
-				.orElseThrow(()-> new RuntimeException());		
+				.orElseThrow(RuntimeException::new);
 		qb.updateBoard(updateQnaBoardRequestDto);
 	}
 
@@ -32,7 +32,7 @@ public class QnaBoardService {
 
 	public void visit(long boardId) {
 		QnaBoard qb = repo.findById(boardId)
-				.orElseThrow(()-> new RuntimeException());
+				.orElseThrow(RuntimeException::new);
 		qb.visit();
 	}
 }

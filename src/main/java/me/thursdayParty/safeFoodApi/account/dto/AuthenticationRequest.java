@@ -1,4 +1,4 @@
-package me.thursdayParty.safeFoodApi.account;
+package me.thursdayParty.safeFoodApi.account.dto;
 
 public class AuthenticationRequest {
     

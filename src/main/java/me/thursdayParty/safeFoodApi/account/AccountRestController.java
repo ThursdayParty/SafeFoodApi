@@ -2,6 +2,8 @@ package me.thursdayParty.safeFoodApi.account;
 
 import javax.servlet.http.HttpSession;
 
+import me.thursdayParty.safeFoodApi.account.dto.AuthenticationRequest;
+import me.thursdayParty.safeFoodApi.account.dto.AuthenticationTokenResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
+import java.security.Principal;
+
 @RestController
 @RequiredArgsConstructor
 public class AccountRestController {
@@ -22,7 +26,7 @@ public class AccountRestController {
 	private final AccountService memberService;
     
 	@PostMapping("/login")
-    public AuthenticationToken login(@RequestBody AuthenticationRequest authenticationRequest, HttpSession session) {
+    public AuthenticationTokenResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpSession session) {
 		System.out.println("/login POST");
          String username = authenticationRequest.getUsername();
          String password = authenticationRequest.getPassword();
@@ -38,12 +42,13 @@ public class AccountRestController {
         
          Account account = memberService.readMember(username);
          System.out.println(account);
-         return new AuthenticationToken(account.getUid(), account.getRole(), session.getId());
+         return new AuthenticationTokenResponse(account.getUid(), account.getRole(), session.getId());
     }
 
 	@GetMapping("/login")
-    public String login() {
-		return "asd";
+    public Principal login(Principal principal) {
+        System.out.println(principal);
+	    return principal;
     }
 
 }

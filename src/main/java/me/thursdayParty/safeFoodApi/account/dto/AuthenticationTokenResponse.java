@@ -1,12 +1,14 @@
-package me.thursdayParty.safeFoodApi.account;
+package me.thursdayParty.safeFoodApi.account.dto;
 
-public class AuthenticationToken {
+import me.thursdayParty.safeFoodApi.account.AccountRole;
+
+public class AuthenticationTokenResponse {
     
      private String username;
      private AccountRole role;
      private String token;
     
-     public AuthenticationToken(String username, AccountRole role, String token) {
+     public AuthenticationTokenResponse(String username, AccountRole role, String token) {
           this.username = username;
           this.role = role;
           this.token = token;

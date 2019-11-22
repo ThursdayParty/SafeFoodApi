@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,10 +15,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Configuration
+@RequiredArgsConstructor
 public class AccountService implements UserDetailsService {
 
-    @Autowired
-    private AccountRepository memberRepository;
+    private final AccountRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String uid) throws UsernameNotFoundException {
