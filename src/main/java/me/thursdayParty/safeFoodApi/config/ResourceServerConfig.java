@@ -22,7 +22,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .mvcMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/oauth/token").not().authenticated()
                 .mvcMatchers(HttpMethod.GET, "/login/google").not().authenticated()
-                .mvcMatchers(HttpMethod.GET, "/api/foods/**").authenticated()
+                .mvcMatchers("/api/taken").authenticated()
                 .mvcMatchers(HttpMethod.GET, "/user").authenticated()
 //                .mvcMatchers(HttpMethod.GET, "/login").authenticated()
                 .anyRequest().permitAll()

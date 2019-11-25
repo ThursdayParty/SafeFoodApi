@@ -23,8 +23,6 @@ public class FoodRestController {
 	
 	private final FoodService foodService;
 
-	private final String[] allergys = {"대두","땅콩","우유","게","새우","참치","연어","쑥","소고기","닭고기","돼지고기","복숭아","민들레","계란흰자"};
-
 	@GetMapping
 	public ResponseEntity<List<FetchAllFoodsResponseDto>> all() { //String searchType, String searchData, String sortType, Model model
 		log.info("/api/foods  GET :: ");
@@ -38,49 +36,5 @@ public class FoodRestController {
 		FetchFoodDetailResponseDto food = foodService.fetchFoodDetail(foodId);
 		return ResponseEntity.ok().body(food);
 	}
-	
-	
-	
-	/*
-	 * 
-	 * @GetMapping("/food.do") public String foodForm(int code, Model model) { Food
-	 * food = foodService.getFoodWithCount(code); model.addAttribute("food", food);
-	 * 
-	 * String[] materials = food.getMaterial().split(","); for (int i = 0; i <
-	 * materials.length; i++) { materials[i] = materials[i].trim(); }
-	 * 
-	 * List<String> foodAllergys = new ArrayList<>(); for (String allergy :
-	 * allergys) { for (String material : materials) {
-	 * if(material.contains(allergy)) { foodAllergys.add(allergy); break; } } }
-	 * 
-	 * String allergyStr = foodAllergys.toString(); model.addAttribute("allergys",
-	 * allergyStr.substring(1, allergyStr.length()-1));
-	 * 
-	 * FoodNutrition foodNutrition = foodService.getNutrition(food.getName());
-	 * model.addAttribute("foodNutrition", foodNutrition); return "food"; }
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @GetMapping("/foodNutrition") public ResponseEntity<FoodNutrition>
-	 * getFoodNutrition(int code) { Food food = foodService.getFood(code);
-	 * FoodNutrition foodNutrition = foodService.getNutrition(food.getName());
-	 * return ResponseEntity.ok().body(foodNutrition); }
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @PostMapping("/takeFood") public ResponseEntity takeFood(TakedFoodRequestDto
-	 * requestDto, HttpSession session) { User user =
-	 * (User)session.getAttribute("userid"); String userId = user.getId();
-	 * requestDto.setUserId(userId);
-	 * 
-	 * foodService.takeFood(requestDto); return ResponseEntity.ok().build(); }
-	 * 
-	 * @GetMapping("/takedFood.do") public String takedFoodForm(Model model,
-	 * HttpSession session) { User user = (User)session.getAttribute("userid");
-	 * String userId = user.getId();
-	 * 
-	 * List<TakedFoodResponseDto> takedFoodResponseDtos =
-	 * foodService.fetchTakedFood(userId); model.addAttribute("takedFoods",
-	 * takedFoodResponseDtos); return "takedFood"; }
-	 */
+
 }

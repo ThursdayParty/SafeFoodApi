@@ -1,5 +1,8 @@
 package me.thursdayParty.safeFoodApi;
 
+import me.thursdayParty.safeFoodApi.TakenFood.TakenFood;
+import me.thursdayParty.safeFoodApi.TakenFood.TakenFoodDao;
+import me.thursdayParty.safeFoodApi.TakenFood.TakenFoodRepository;
 import me.thursdayParty.safeFoodApi.account.Account;
 import me.thursdayParty.safeFoodApi.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import me.thursdayParty.safeFoodApi.qnaBoard.ui.dto.SaveQneBoardRequestDto;
 @Component
 public class InitRunner implements ApplicationRunner {
 
+    @Autowired
+    TakenFoodRepository takenFoodRepository;
 	@Autowired
 	private QnaBoardRepository qnaBoardRepository;
     @Autowired
@@ -38,7 +43,10 @@ public class InitRunner implements ApplicationRunner {
         acc.setUemail("testuser@gmail.com");
         acc.setUpw(passwordEncoder.encode("pas"));
         accountRepository.save(acc);
-	}
 
+        TakenFood tf = new TakenFood();
+        tf.init(2L,2L);
+        takenFoodRepository.save(tf);
+	}
 
 }

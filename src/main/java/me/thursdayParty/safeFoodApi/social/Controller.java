@@ -17,6 +17,8 @@ public class Controller {
 
     @GetMapping("/")
     public Principal home(Principal principal) {
+        System.out.println(principal.getName());
+
         return principal;
     }
 
