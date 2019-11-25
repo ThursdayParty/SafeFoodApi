@@ -20,4 +20,16 @@ spring:
       enabled: true
 server:
   port: 9090
-  
+
+google :
+  client :
+    clientId : 912754414578-p394mngim7v70budiqc287ve1d8bgldg.apps.googleusercontent.com
+    clientSecret:
+    accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+    clientAuthenticationScheme: form
+    scope:
+      - email
+      - profile
+  resource:
+    userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo

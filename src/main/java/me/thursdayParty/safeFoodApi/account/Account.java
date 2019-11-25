@@ -29,13 +29,13 @@ public class Account {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, unique = true, length=50)
+	@Column(unique = true, length=50)
 	private String uid;
-	
-	@Column(nullable = false, length=200)
+
+	@Column(length=200)
 	private String upw;
 	
-	@Column(nullable = false, unique = true, length=50)
+	@Column(length=50)
 	private String uemail;
 	
 	@CreationTimestamp

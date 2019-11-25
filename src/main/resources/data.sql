@@ -18,3 +18,65 @@ Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_
 Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_wt, calorie, carbohydrate, protein, fat, sugars, salt, cholesterol, saturated_fatty_acid, trans_fat) values (18,'맥심티오피스위트아메리카노','동서식품','맥심 에스프레소 커피추출액 ( 고형분 5.0%이상 ,커피원두:콜롬비아산60%,브라질산21%)12.6%,정제수,백설탕,탄산칼륨,합성착향료 ( 커피향 ),비타민C,자당지방산에스테르','https://user-images.githubusercontent.com/25674959/69319414-79fb1000-0c82-11ea-9be9-c51885e028fa.jpg',2017,200,70.4,17.6,0,0,16,52,0,0,0);
 Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_wt, calorie, carbohydrate, protein, fat, sugars, salt, cholesterol, saturated_fatty_acid, trans_fat) values (19,'맥심티오피마스터라떼','동서식품','정제수,우유 (국내산)15%,맥심 에스프레소 커피추출액 ( 고형분 5.0%이상 ,커피원두:콜롬비아산60%,브라질산21%)12.6%,백설탕,유크림,탈지분유,탄산칼륨,자당지방산에스테르,비타민C','https://user-images.githubusercontent.com/25674959/69319407-7798b600-0c82-11ea-957e-7d0e606654f7.jpg',2017,200,156.4,26,3.2,4.4,26.2,72.73,16,3.2,0);
 Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_wt, calorie, carbohydrate, protein, fat, sugars, salt, cholesterol, saturated_fatty_acid, trans_fat) values (20,'아카페라아메리카노','빙그레','정제수,콜드브루커피추출액7%(고형분3%이상/커피원두:에티오피아40%,콜롬비아30%,브라질30%),백설탕,에스프레소커피추출액 1.54% ( 고형분 34%이상 /커피원두:브라질),탄산수소나트륨,아스코르빈산나트륨,천연커피향','https://user-images.githubusercontent.com/25674959/69319435-82534b00-0c82-11ea-9430-cd4280d33305.jpg',2017,200,58.33,13.33,0.83,0,11.68,91.67,0,0,0);
+
+
+
+-- h2 oauth2
+create table oauth_client_details (
+  client_id VARCHAR(256) PRIMARY KEY,
+  resource_ids VARCHAR(256),
+  client_secret VARCHAR(256),
+  scope VARCHAR(256),
+  authorized_grant_types VARCHAR(256),
+  web_server_redirect_uri VARCHAR(256),
+  authorities VARCHAR(256),
+  access_token_validity INTEGER,
+  refresh_token_validity INTEGER,
+  additional_information VARCHAR(4096),
+  autoapprove VARCHAR(256)
+);
+create table oauth_client_token (
+  token_id VARCHAR(256),
+  token LONGVARBINARY,
+  authentication_id VARCHAR(256) PRIMARY KEY,
+  user_name VARCHAR(256),
+  client_id VARCHAR(256)
+);
+create table oauth_access_token (
+  token_id VARCHAR(256),
+  token LONGVARBINARY,
+  authentication_id VARCHAR(256) PRIMARY KEY,
+  user_name VARCHAR(256),
+  client_id VARCHAR(256),
+  authentication LONGVARBINARY,
+  refresh_token VARCHAR(256)
+);
+create table oauth_refresh_token (
+  token_id VARCHAR(256),
+  token LONGVARBINARY,
+  authentication LONGVARBINARY
+);
+create table oauth_code (
+  code VARCHAR(256), authentication LONGVARBINARY
+);
+create table oauth_approvals (
+	userId VARCHAR(256),
+	clientId VARCHAR(256),
+	scope VARCHAR(256),
+	status VARCHAR(10),
+	expiresAt TIMESTAMP,
+	lastModifiedAt TIMESTAMP
+);
+create table ClientDetails (
+  appId VARCHAR(256) PRIMARY KEY,
+  resourceIds VARCHAR(256),
+  appSecret VARCHAR(256),
+  scope VARCHAR(256),
+  grantTypes VARCHAR(256),
+  redirectUrl VARCHAR(256),
+  authorities VARCHAR(256),
+  access_token_validity INTEGER,
+  refresh_token_validity INTEGER,
+  additionalInformation VARCHAR(4096),
+  autoApproveScopes VARCHAR(256)
+);

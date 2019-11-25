@@ -2,6 +2,7 @@ package me.thursdayParty.safeFoodApi.account;
 
 import javax.servlet.http.HttpSession;
 
+import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
 import me.thursdayParty.safeFoodApi.account.dto.AuthenticationRequest;
 import me.thursdayParty.safeFoodApi.account.dto.AuthenticationTokenResponse;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,10 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +21,7 @@ import java.security.Principal;
 public class AccountRestController {
 	
 	private final AuthenticationManager authenticationManager;
-	private final AccountService memberService;
+	private final AccountService accountService;
     
 	@PostMapping("/login")
     public AuthenticationTokenResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpSession session) {
@@ -40,15 +38,20 @@ public class AccountRestController {
                    SecurityContextHolder.getContext());
          System.out.println(token);
         
-         Account account = memberService.readMember(username);
+         Account account = accountService.readMember(username);
          System.out.println(account);
          return new AuthenticationTokenResponse(account.getUid(), account.getRole(), session.getId());
     }
 
-	@GetMapping("/login")
+	@GetMapping("/user")
     public Principal login(Principal principal) {
         System.out.println(principal);
 	    return principal;
+    }
+
+    @PostMapping("/signUp")
+    public void signUp(@RequestBody AccountSaveRequestDto accountSaveRequestDto) {
+	    accountService.signUp(accountSaveRequestDto);
     }
 
 }

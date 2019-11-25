@@ -16,7 +16,7 @@ public class SafeFoodApiApplication {
 
 @RestController
 class hello {
-	@GetMapping
+	@GetMapping("/hello")
 	public String hello() {
 		return "Hi~";
 	}

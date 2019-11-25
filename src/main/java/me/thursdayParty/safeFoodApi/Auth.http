@@ -1,0 +1,44 @@
+###
+GET http://localhost:9090/api/foods
+
+###
+GET http://localhost:9090/api/foods/1
+
+### 1. AccessToken, RefreshToken 발행
+POST http://localhost:9090/oauth/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YmFjdG9yaWE6cGFzc3dvcmQh # client_id:client_password (Not User)
+
+grant_type=password&username=bactoria&password=pass&scope=read_profile
+
+### 2. Resource 요청
+GET http://localhost:9090/user
+Authorization: Bearer 0e75be96-7064-42c4-96b5-5c88b25d7df2
+
+###  3. AccessToken 만료시, 토큰 재발행
+POST http://localhost:9090/oauth/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YmFjdG9yaWE6cGFzc3dvcmQh # client_id:client_password (Not User)
+
+grant_type=refresh_token&scope=read_profile&refresh_token=45169ac2-b7e1-4a1f-9547-64acd74e5730
+
+###
+GET https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:9090/login/google&response_type=code&client_id=912754414578-p394mngim7v70budiqc287ve1d8bgldg.apps.googleusercontent.com
+
+###
+POST https://www.googleapis.com/oauth2/v4/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&code=4%2FtgE4s-zLiQAmesI72xGpdnxe-KxZF0qA9E9us_ayJ1SNdKFLDiCS8ppEgIpj1swQpWlUDCPaDZEdapbweuP-KfQ&client_id=912754414578-p394mngim7v70budiqc287ve1d8bgldg.apps.googleusercontent.com&client_secret=t0YCQz-b9EQt1y8G7_XhHdTV&redirect_uri=http://localhost:9090/login/google
+
+
+###
+GET https://www.googleapis.com/auth/userinfo.profile?access_token=ya29.Il-yB32dMwliwHe2RXvf3WWnVM1LCIOLhWqBBtaTILJyTds5ioII9-iiuU-6TM1bptzHkeacp1_G9D01MqKcPV2UE4dRrRgnCdxCGtLzE0jiDZy-bEzJDmdRHUbdCMl8Ww
+
+###
+GET https://www.googleapis.com/profile
+Authorization: Bearer ya29.Il-yB30mU_eG4AUKrg1h6xGQBlR1vgt_WG4VFAMIztqH-DO3xm425Sbb8_Fjp5X-mj5BDbIGTZd1H-ZWxpQG8w4drn0LNgl_vyau3x4lUfbuz7ED6bf5tAUsIhcgr7NG0Q
+
+
+###
+

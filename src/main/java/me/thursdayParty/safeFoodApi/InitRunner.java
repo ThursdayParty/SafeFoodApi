@@ -28,10 +28,15 @@ public class InitRunner implements ApplicationRunner {
 		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목1", "pass1", "내용1", "user1").toEntity());
 		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목2", "pass2", "내용2", "user2").toEntity());
 
-		Account acc = new Account();
-		acc.setUid("bactoria");
-		acc.setUemail("bactoria@gmail.com");
-		acc.setUpw(passwordEncoder.encode("pass"));
+        Account acc = new Account();
+        acc.setUid("bactoria");
+        acc.setUemail("bactoria@gmail.com");
+        acc.setUpw(passwordEncoder.encode("pass"));
+        accountRepository.save(acc);
+        acc = new Account();
+        acc.setUid("pacto");
+        acc.setUemail("testuser@gmail.com");
+        acc.setUpw(passwordEncoder.encode("pas"));
         accountRepository.save(acc);
 	}
 
