@@ -7,6 +7,7 @@ import me.thursdayParty.safeFoodApi.food.dto.FetchFoodsResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -19,9 +20,17 @@ public class FoodRestController {
     private final FoodService foodService;
 
     @GetMapping
-    public ResponseEntity<List<FetchFoodsResponseDto>> fetch() { //String searchType, String searchData, String sortType, Model model
-        log.info("/api/foods  GET :: ");
-        List<FetchFoodsResponseDto> foods = foodService.fetchAllFood();
+    public ResponseEntity<List<FetchFoodsResponseDto>> fetch(@RequestParam(required = false) String searchType, @RequestParam(required = false) String searchKeyword) {
+        log.info("/api/foods  GET :: searchType: {}, searchKeyword: {}", searchType, searchKeyword);
+
+        List<FetchFoodsResponseDto> foods = new ArrayList<>();
+
+        if(searchType == null || searchKeyword == null) {
+             foods = foodService.fetchAllFood();
+        } else {
+            foods = foodService.fetchBySearch(searchType, searchKeyword);
+        }
+
         return ResponseEntity.ok().body(foods);
     }
 

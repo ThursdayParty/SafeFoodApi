@@ -15,12 +15,17 @@ import java.util.stream.Collectors;
 public class FoodService {
 
     private final FoodRepository repo;
+    private final FoodDao dao;
 
     public List<FetchFoodsResponseDto> fetchAllFood() {
         List<Food> foods = repo.findAll();
         return foods.stream()
                 .map(FetchFoodsResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<FetchFoodsResponseDto> fetchBySearch(String searchType, String searchKeyword) {
+        return dao.fetchBySearch(searchType, searchKeyword);
     }
 
     public FetchFoodDetailResponseDto fetchFoodDetail(final long foodId) {
