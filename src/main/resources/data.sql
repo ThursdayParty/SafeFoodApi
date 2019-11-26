@@ -19,7 +19,24 @@ Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_
 Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_wt, calorie, carbohydrate, protein, fat, sugars, salt, cholesterol, saturated_fatty_acid, trans_fat) values (19,'맥심티오피마스터라떼','동서식품','정제수,우유 (국내산)15%,맥심 에스프레소 커피추출액 ( 고형분 5.0%이상 ,커피원두:콜롬비아산60%,브라질산21%)12.6%,백설탕,유크림,탈지분유,탄산칼륨,자당지방산에스테르,비타민C','https://user-images.githubusercontent.com/25674959/69319407-7798b600-0c82-11ea-957e-7d0e606654f7.jpg',2017,200,156.4,26,3.2,4.4,26.2,72.73,16,3.2,0);
 Insert into food (food_id, name, maker, materials, image_url, bgn_year, serving_wt, calorie, carbohydrate, protein, fat, sugars, salt, cholesterol, saturated_fatty_acid, trans_fat) values (20,'아카페라아메리카노','빙그레','정제수,콜드브루커피추출액7%(고형분3%이상/커피원두:에티오피아40%,콜롬비아30%,브라질30%),백설탕,에스프레소커피추출액 1.54% ( 고형분 34%이상 /커피원두:브라질),탄산수소나트륨,아스코르빈산나트륨,천연커피향','https://user-images.githubusercontent.com/25674959/69319435-82534b00-0c82-11ea-9430-cd4280d33305.jpg',2017,200,58.33,13.33,0.83,0,11.68,91.67,0,0,0);
 
-
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-26 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-26 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-25 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-24 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-24 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-23 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-22 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-22 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-21 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-20 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-20 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-18 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-18 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-18 09:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-17 03:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-16 04:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-15 01:38:35.43937');
+Insert into taken_food (account_id, food_id, created_date_time) values(2, 1, '2019-11-14 02:38:35.43937');
 
 -- h2 oauth2
 create table oauth_client_details (

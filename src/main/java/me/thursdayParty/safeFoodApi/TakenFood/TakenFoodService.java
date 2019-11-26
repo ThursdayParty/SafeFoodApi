@@ -1,18 +1,14 @@
 package me.thursdayParty.safeFoodApi.TakenFood;
 
 import lombok.RequiredArgsConstructor;
+import me.thursdayParty.safeFoodApi.TakenFood.dto.DailyTakenFoodDto;
 import me.thursdayParty.safeFoodApi.TakenFood.dto.FetchAllTakenFoodResponseDto;
 import me.thursdayParty.safeFoodApi.account.Account;
 import me.thursdayParty.safeFoodApi.account.AccountRepository;
-import me.thursdayParty.safeFoodApi.food.Food;
-import me.thursdayParty.safeFoodApi.food.FoodRepository;
-import me.thursdayParty.safeFoodApi.food.dto.FetchAllFoodsResponseDto;
-import me.thursdayParty.safeFoodApi.food.dto.FetchFoodDetailResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -38,5 +34,11 @@ public class TakenFoodService {
         Account currentUser = accountRepository.findByUid(currentUserId)
                 .orElseThrow(RuntimeException::new);
         return takenFoodDao.findAllByAccountId(currentUser.getId());
+    }
+
+    public List<DailyTakenFoodDto> fetchDaily(String currentUserId) {
+        Account currentUser = accountRepository.findByUid(currentUserId)
+                .orElseThrow(RuntimeException::new);
+        return takenFoodDao.findDailyTakenFoodByAccountId(currentUser.getId());
     }
 }

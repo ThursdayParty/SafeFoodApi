@@ -44,9 +44,6 @@ public class InitRunner implements ApplicationRunner {
         acc.setUpw(passwordEncoder.encode("pas"));
         accountRepository.save(acc);
 
-        TakenFood tf = new TakenFood();
-        tf.init(2L,2L);
-        takenFoodRepository.save(tf);
 	}
 
 }
