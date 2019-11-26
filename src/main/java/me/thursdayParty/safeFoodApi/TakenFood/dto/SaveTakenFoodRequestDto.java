@@ -2,6 +2,7 @@ package me.thursdayParty.safeFoodApi.TakenFood.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author Bactoria
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
  */
 
 @Getter
+@ToString
 @NoArgsConstructor
 public class SaveTakenFoodRequestDto {
     private Long foodId;

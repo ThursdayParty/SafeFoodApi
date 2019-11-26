@@ -19,7 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll()
+                .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/oauth/token").not().authenticated()
                 .mvcMatchers(HttpMethod.GET, "/login/google").not().authenticated()
                 .mvcMatchers("/api/taken").authenticated()

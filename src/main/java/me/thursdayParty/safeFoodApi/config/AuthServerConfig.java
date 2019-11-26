@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.thursdayParty.safeFoodApi.account.AccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -55,6 +52,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .userDetailsService(accountService)
                 .tokenStore(tokenStore())
                 .approvalStore(approvalStore());
+
+/*
+        endpoints
+                    .pathMapping("/oauth/token", "/api/oauth/token");
+필요할텐데 일단 블로깅해보자. oauth/token 경로 바꾸는 방법임.
+*/
+
     }
 
     @Bean

@@ -19,6 +19,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class FetchAllTakenFoodResponseDto {
     private Long foodId;
+    private String name;
+    private String maker;
     private LocalDateTime takenDateTime;
     private Integer serving_wt;
     private Double calorie;
@@ -33,6 +35,8 @@ public class FetchAllTakenFoodResponseDto {
 
     public FetchAllTakenFoodResponseDto(TakenFood takenFood, Food food) {
         this.foodId = takenFood.getFoodId();
+        this.name = food.getName();
+        this.maker = food.getMaker();
         this.takenDateTime = takenFood.getCreatedDateTime();
         this.serving_wt = food.getServing_wt();
         this.calorie = food.getCalorie();

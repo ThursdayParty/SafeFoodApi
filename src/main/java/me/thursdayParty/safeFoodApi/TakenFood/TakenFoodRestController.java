@@ -18,25 +18,26 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-//@RequestMapping("/api/taken")
+@RequestMapping("/api/taken")
 public class TakenFoodRestController {
 	
 	private final TakenFoodService takenFoodService;
 
-	@GetMapping("/test")
-    public ResponseEntity save() {
-        log.info("/api/taken  POST :: ");
+	@PostMapping
+    public ResponseEntity save(@RequestBody SaveTakenFoodRequestDto saveTakenFoodRequestDto, Principal principal) {
+        log.info("/api/taken  POST ::  requestDto: {}, user: {}", saveTakenFoodRequestDto, principal.getName());
 
-        Long foodId = 1L;
-        String currentUserId = "bactoria";
+        Long foodId = saveTakenFoodRequestDto.getFoodId();
+        String currentUserId = principal.getName();
         takenFoodService.save(currentUserId, foodId);
 	    return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/test2")
-    public ResponseEntity<List<FetchAllTakenFoodResponseDto>> all() {
+    @GetMapping
+    public ResponseEntity<List<FetchAllTakenFoodResponseDto>> all(Principal principal) {
+        log.info("/api/taken  GET :: user: {}", principal.getName());
 
-        String currentUserId = "bactoria";
+        String currentUserId = principal.getName();
         List<FetchAllTakenFoodResponseDto> body = takenFoodService.fetchAll(currentUserId);
         return ResponseEntity.ok().body(body);
     }
