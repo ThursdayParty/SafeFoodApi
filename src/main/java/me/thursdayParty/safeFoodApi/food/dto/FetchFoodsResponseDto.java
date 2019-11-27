@@ -10,6 +10,7 @@ public class FetchFoodsResponseDto {
 	private String maker;
 	private String materials;
 	private String imageUrl;
+    private Long recommendCount;
 
 	public FetchFoodsResponseDto(Food food) {
 		this.foodId = food.getFoodId();
@@ -17,6 +18,7 @@ public class FetchFoodsResponseDto {
 		this.maker = food.getMaker();
 		this.materials = food.getMaterials();
 		this.imageUrl = food.getImageUrl();
+        this.recommendCount = food.getRecommendCount();
 	}
 	
 }

@@ -15,7 +15,8 @@ public class FetchFoodDetailResponseDto {
 	private String maker;
 	private String materials;
 	private String imageUrl;
-	private Long views;
+    private Long views;
+    private Long recommendCount;
 
 	private Integer bgn_year;
 	private Integer serving_wt;
@@ -35,6 +36,7 @@ public class FetchFoodDetailResponseDto {
 		this.foodId = food.getFoodId();
 		this.name = food.getName();
 		this.maker = food.getMaker();
+		this.recommendCount = food.getRecommendCount();
 		this.materials = food.getMaterials();
 		this.imageUrl = food.getImageUrl();
 		this.views = food.getViews();

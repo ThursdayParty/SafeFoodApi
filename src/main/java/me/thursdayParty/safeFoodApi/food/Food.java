@@ -27,9 +27,12 @@ public class Food {
 	private String materials;
 
 	@ColumnDefault("0")
-	private Long views;
+    private Long views;
 
-	private String name;
+    @ColumnDefault("0")
+    private Long recommendCount;
+
+    private String name;
 	private String maker;
 	private String imageUrl;	
 
@@ -44,8 +47,12 @@ public class Food {
 	private Double cholesterol;
 	private Double saturated_fatty_acid;
 	private Double trans_fat;
-	
-	public void visit() {
-		this.views++;
-	}
+
+    public void visit() {
+        this.views++;
+    }
+    public void recommend() {
+        this.recommendCount++;
+    }
+
 }
