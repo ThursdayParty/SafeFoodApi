@@ -25,10 +25,9 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String uid) throws UsernameNotFoundException {
-        System.out.println(uid);
     	Optional<Account> byUsername = accountRepository.findByUid(uid);
+
     	Account account = byUsername.orElseThrow(() -> new UsernameNotFoundException(uid));
-        System.out.println(account);
         return new User(account.getUid(), account.getUpw(), authorities());
     }
 
@@ -55,5 +54,11 @@ public class AccountService implements UserDetailsService {
         Account account = accountSaveRequestDto.toEntity();
         account.setUpw(passwordEncoder.encode(account.getUpw()));
         accountRepository.save(account);
+    }
+
+    public void checkDuplication(String accountId) {
+        if (accountRepository.findByUid(accountId).isPresent()) {
+            throw new RuntimeException("아이디가 이미 존재");
+        }
     }
 }

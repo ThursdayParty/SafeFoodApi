@@ -25,7 +25,7 @@ public class TakenFoodService {
                 .orElseThrow(RuntimeException::new);
 
         TakenFood takenFood = new TakenFood();
-        takenFood.init(currentUser.getId(), foodId);
+        takenFood.init(currentUser.getAccountId(), foodId);
 
         takenFoodRepository.save(takenFood);
     }
@@ -33,12 +33,12 @@ public class TakenFoodService {
     public List<FetchAllTakenFoodResponseDto> fetchAll(String currentUserId) {
         Account currentUser = accountRepository.findByUid(currentUserId)
                 .orElseThrow(RuntimeException::new);
-        return takenFoodDao.findAllByAccountId(currentUser.getId());
+        return takenFoodDao.findAllByAccountId(currentUser.getAccountId());
     }
 
     public List<DailyTakenFoodDto> fetchDaily(String currentUserId) {
         Account currentUser = accountRepository.findByUid(currentUserId)
                 .orElseThrow(RuntimeException::new);
-        return takenFoodDao.findDailyTakenFoodByAccountId(currentUser.getId());
+        return takenFoodDao.findDailyTakenFoodByAccountId(currentUser.getAccountId());
     }
 }

@@ -1,14 +1,10 @@
 package me.thursdayParty.safeFoodApi.account;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,15 +23,18 @@ public class Account {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long accountId;
 	
 	@Column(unique = true, length=50)
 	private String uid;
 
-	@Column(length=200)
-	private String upw;
-	
-	@Column(length=50)
+    @Column(length=200)
+    private String upw;
+
+    @Column(length=50)
+    private String uname;
+
+    @Column(length=50)
 	private String uemail;
 	
 	@CreationTimestamp
@@ -46,5 +45,9 @@ public class Account {
 	
 	@Enumerated(EnumType.STRING)
 	private AccountRole role;
-	
+
+    @ElementCollection
+    @CollectionTable(name = "allergy", joinColumns = @JoinColumn(name = "account_id"))
+    @Column(name = "allgergy_name")
+    private List<String> allergies = new ArrayList<>();
 }

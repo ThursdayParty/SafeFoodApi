@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
 import me.thursdayParty.safeFoodApi.account.dto.AuthenticationRequest;
 import me.thursdayParty.safeFoodApi.account.dto.AuthenticationTokenResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/account")
 public class AccountRestController {
 	
 	private final AuthenticationManager authenticationManager;
@@ -49,9 +51,16 @@ public class AccountRestController {
 	    return principal;
     }
 
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
     public void signUp(@RequestBody AccountSaveRequestDto accountSaveRequestDto) {
-	    accountService.signUp(accountSaveRequestDto);
+        System.out.println(accountSaveRequestDto);
+        accountService.signUp(accountSaveRequestDto);
+    }
+
+    @GetMapping("/userIdDuplicationCheck")
+    public ResponseEntity signUp(@RequestParam String accountId) {
+        accountService.checkDuplication(accountId);
+        return ResponseEntity.ok().build();
     }
 
 }

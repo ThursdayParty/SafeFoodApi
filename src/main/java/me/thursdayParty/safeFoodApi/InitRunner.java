@@ -16,6 +16,9 @@ import me.thursdayParty.safeFoodApi.food.FoodRepository;
 import me.thursdayParty.safeFoodApi.qnaBoard.command.QnaBoardRepository;
 import me.thursdayParty.safeFoodApi.qnaBoard.ui.dto.SaveQneBoardRequestDto;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Component
 public class InitRunner implements ApplicationRunner {
 
@@ -37,11 +40,14 @@ public class InitRunner implements ApplicationRunner {
         acc.setUid("bactoria");
         acc.setUemail("bactoria@gmail.com");
         acc.setUpw(passwordEncoder.encode("pass"));
+        acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
         accountRepository.save(acc);
+
         acc = new Account();
         acc.setUid("pacto");
         acc.setUemail("testuser@gmail.com");
         acc.setUpw(passwordEncoder.encode("pas"));
+        acc.setAllergies(new ArrayList<String>(Arrays.asList("대두", "땅콩")));
         accountRepository.save(acc);
 
 	}
