@@ -47,7 +47,7 @@ public class InitRunner implements ApplicationRunner {
         acc.setUid("pacto");
         acc.setUemail("testuser@gmail.com");
         acc.setUpw(passwordEncoder.encode("pas"));
-        acc.setAllergies(new ArrayList<String>(Arrays.asList("대두", "땅콩")));
+        acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
         accountRepository.save(acc);
 
 	}

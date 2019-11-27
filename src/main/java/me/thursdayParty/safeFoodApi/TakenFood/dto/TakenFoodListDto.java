@@ -20,6 +20,7 @@ public class TakenFoodListDto {
     private Long foodId;
     private String name;
     private String maker;
+    private String materials;
     private Double kcal;
     private LocalDateTime takenDateTime;
 
@@ -29,5 +30,6 @@ public class TakenFoodListDto {
         this.maker = f.getMaker();
         this.kcal = f.getCalorie();
         this.takenDateTime = tf.getCreatedDateTime();
+        this.materials = f.getMaterials();
     }
 }

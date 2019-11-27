@@ -3,6 +3,7 @@ package me.thursdayParty.safeFoodApi.TakenFood;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.thursdayParty.safeFoodApi.TakenFood.dto.DailyTakenFoodDto;
+import me.thursdayParty.safeFoodApi.TakenFood.dto.DailyTakenFoodServiceDto;
 import me.thursdayParty.safeFoodApi.TakenFood.dto.FetchAllTakenFoodResponseDto;
 import me.thursdayParty.safeFoodApi.TakenFood.dto.SaveTakenFoodRequestDto;
 import org.springframework.http.ResponseEntity;
@@ -40,11 +41,11 @@ public class TakenFoodRestController {
     }
 
     @GetMapping("/daily")
-    public ResponseEntity<List<DailyTakenFoodDto>> daily(Principal principal) {
+    public ResponseEntity<List<DailyTakenFoodServiceDto>> daily(Principal principal) {
         log.info("/api/taken/daily  GET :: user: {}", principal.getName());
 
         String currentUserId = principal.getName();
-        List<DailyTakenFoodDto> body = takenFoodService.fetchDaily(currentUserId);
+        List<DailyTakenFoodServiceDto> body = takenFoodService.fetchDaily(currentUserId);
         return ResponseEntity.ok().body(body);
     }
 
