@@ -2,9 +2,8 @@ package me.thursdayParty.safeFoodApi.account;
 
 import javax.servlet.http.HttpSession;
 
-import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
-import me.thursdayParty.safeFoodApi.account.dto.AuthenticationRequest;
-import me.thursdayParty.safeFoodApi.account.dto.AuthenticationTokenResponse;
+import lombok.extern.slf4j.Slf4j;
+import me.thursdayParty.safeFoodApi.account.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.security.Principal;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/account")
@@ -35,20 +35,32 @@ public class AccountRestController {
          Authentication authentication = authenticationManager.authenticate(token);
          SecurityContextHolder.getContext().setAuthentication(authentication);
          System.out.println(token);
-         
+
          session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
                    SecurityContextHolder.getContext());
          System.out.println(token);
-        
+
          Account account = accountService.readMember(username);
          System.out.println(account);
          return new AuthenticationTokenResponse(account.getUid(), account.getRole(), session.getId());
     }
 
-	@GetMapping("/user")
-    public Principal login(Principal principal) {
-        System.out.println(principal);
-	    return principal;
+    @PutMapping
+    public ResponseEntity update(Principal principal, @RequestBody AccountUpdateRequestDto accountUpdateRequestDto) {
+        log.info("/api/account PUT :: user: {}, requestDto: {}", principal.getName(), accountUpdateRequestDto);
+
+        String username = principal.getName();
+        accountService.updateAccount(username, accountUpdateRequestDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/currentUser")
+    public ResponseEntity<AccountInfoResponseDto> current(Principal principal) {
+        log.info("/api/account/current GET :: user: {}", principal.getName());
+
+        String username = principal.getName();
+        AccountInfoResponseDto body = accountService.fetchAccountInfo(username);
+        return ResponseEntity.ok().body(body);
     }
 
     @PostMapping("/signup")

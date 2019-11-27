@@ -2,10 +2,13 @@ package me.thursdayParty.safeFoodApi.account;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
+import me.thursdayParty.safeFoodApi.account.dto.AccountInfoResponseDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
+import me.thursdayParty.safeFoodApi.account.dto.AccountUpdateRequestDto;
 import me.thursdayParty.safeFoodApi.social.AccountConnection;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,8 +18,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Configuration
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class AccountService implements UserDetailsService {
 
@@ -60,5 +66,20 @@ public class AccountService implements UserDetailsService {
         if (accountRepository.findByUid(accountId).isPresent()) {
             throw new RuntimeException("아이디가 이미 존재");
         }
+    }
+
+    public AccountInfoResponseDto fetchAccountInfo(String username) {
+        return accountRepository.findInfoByUid(username)
+                .orElseThrow(RuntimeException::new);
+    }
+
+    public void updateAccount(String username, AccountUpdateRequestDto accountUpdateRequestDto) {
+        Account account = accountRepository.findByUid(username).orElseThrow(RuntimeException::new);
+
+        String name = accountUpdateRequestDto.getName();
+        String password = passwordEncoder.encode(accountUpdateRequestDto.getPassword());
+        List<String> allergies = accountUpdateRequestDto.getAllergies();
+
+        account.updateUserInfo(name, password, allergies);
     }
 }

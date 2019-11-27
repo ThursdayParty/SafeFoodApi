@@ -41,6 +41,7 @@ public class InitRunner implements ApplicationRunner {
         acc.setUemail("bactoria@gmail.com");
         acc.setUpw(passwordEncoder.encode("pass"));
         acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
+        acc.setUname("박토리아");
         accountRepository.save(acc);
 
         acc = new Account();
@@ -48,6 +49,7 @@ public class InitRunner implements ApplicationRunner {
         acc.setUemail("testuser@gmail.com");
         acc.setUpw(passwordEncoder.encode("pas"));
         acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
+        acc.setUname("팍토");
         accountRepository.save(acc);
 
 	}

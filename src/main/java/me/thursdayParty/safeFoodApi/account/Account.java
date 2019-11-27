@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import me.thursdayParty.safeFoodApi.account.dto.AccountUpdateRequestDto;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -50,4 +51,10 @@ public class Account {
     @CollectionTable(name = "allergy", joinColumns = @JoinColumn(name = "account_id"))
     @Column(name = "allgergy_name")
     private List<String> allergies = new ArrayList<>();
+
+    public void updateUserInfo(String name, String password, List<String> allergies) {
+        this.uname = name;
+        this.upw = password;
+        this.allergies = allergies;
+    }
 }
