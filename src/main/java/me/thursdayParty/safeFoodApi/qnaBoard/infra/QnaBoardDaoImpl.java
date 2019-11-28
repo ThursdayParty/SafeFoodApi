@@ -35,7 +35,7 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 	@Override
 	public FetchDetailQnaBoardResponseDto findQnaBoardDetailByBoardId(long boardId) {
         String selectQuery =
-                "select NEW "+DTO_PATH+"FetchDetailQnaBoardResponseDto(qb.boardId, qb.title, qb.content, a.uname, qb.createdTime, qb.views)"+
+                "select NEW "+DTO_PATH+"FetchDetailQnaBoardResponseDto(qb.boardId, qb.title, qb.content, a.uid, a.uname, qb.createdTime, qb.views)"+
                 " from QnaBoard qb inner join Account a on qb.userId=a.uid"+
                 " where qb.boardId = :boardId";
 

@@ -2,7 +2,9 @@ package me.thursdayParty.safeFoodApi.qnaBoard.ui;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
+import me.thursdayParty.safeFoodApi.qnaBoard.query.dto.FetchDetailQnaBoardServiceResponseDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,9 +46,17 @@ public class QnaBoardRestController {
 	}
 	
 	@GetMapping("/{boardId}")
-	public ResponseEntity<FetchDetailQnaBoardResponseDto> byId(@PathVariable long boardId) {
-		log.info("/api/qnaBoards/",boardId,"  Get :: ");
-		FetchDetailQnaBoardResponseDto qnaBoard = fetchService.fetchDetail(boardId);
+	public ResponseEntity<FetchDetailQnaBoardServiceResponseDto> byId(@PathVariable long boardId, Principal principal) {
+		log.info("/api/qnaBoards/{}  Get :: ", boardId);
+
+        Optional<String> userId = Optional.empty();
+        if (principal != null) {
+            userId = Optional.of(principal.getName());
+        }
+
+        log.info("userId:: {}", userId);
+
+        FetchDetailQnaBoardServiceResponseDto qnaBoard = fetchService.fetchDetail(boardId, userId);
 		return ResponseEntity.ok().body(qnaBoard);
 	}
 	

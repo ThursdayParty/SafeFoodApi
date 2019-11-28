@@ -1,7 +1,10 @@
 package me.thursdayParty.safeFoodApi.qnaBoard.query;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
+import me.thursdayParty.safeFoodApi.qnaBoard.query.dto.FetchDetailQnaBoardServiceResponseDto;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -21,10 +24,11 @@ public class FetchQnaBoardService {
 		return dao.findAll();
 	}
 
-	public FetchDetailQnaBoardResponseDto fetchDetail(long boardId) {
+	public FetchDetailQnaBoardServiceResponseDto fetchDetail(long boardId, Optional<String> userId) {
 		service.visit(boardId);
-		FetchDetailQnaBoardResponseDto boardDetail = dao.findQnaBoardDetailByBoardId(boardId);
-		return boardDetail;
+        FetchDetailQnaBoardResponseDto boardDetail = dao.findQnaBoardDetailByBoardId(boardId);
+        FetchDetailQnaBoardServiceResponseDto boardDetailResponse = new FetchDetailQnaBoardServiceResponseDto(boardDetail, userId);
+        return boardDetailResponse;
 	}
 
 	public PasswordCheckResponseDto isMatchPassword(long boardId, String boardPassword) {
