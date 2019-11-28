@@ -33,8 +33,9 @@ public class InitRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		qnaBoardRepository.save(new SaveQneBoardRequestDto("배고파요", "내용1").toEntity("pacto"));
-		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목2", "내용2").toEntity("pacto"));
+        qnaBoardRepository.save(new SaveQneBoardRequestDto("대두대두 ~ 대두 알러지때문에 너무 싫어 대두!!", "노이로제 걸릴 것 같아요 대두대두").toEntity("pacto"));
+        qnaBoardRepository.save(new SaveQneBoardRequestDto("신라면 추천 많이 해주세요~~ 좋아여~~", "신라면 맛있따고요").toEntity("bactoria"));
+		qnaBoardRepository.save(new SaveQneBoardRequestDto("와 라면 왜이렇게 칼로리가 높은건지..", "나트륨 좀 줄여야겠네요").toEntity("developer"));
 
         Account acc = new Account();
         acc.setUid("bactoria");
@@ -53,11 +54,11 @@ public class InitRunner implements ApplicationRunner {
         accountRepository.save(acc);
 
         acc = new Account();
-        acc.setUid("pacto2");
+        acc.setUid("developer");
         acc.setUemail("testuser@gmail.com");
         acc.setUpw(passwordEncoder.encode("pas"));
         acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
-        acc.setUname("팍토");
+        acc.setUname("쿠쿠크루");
         accountRepository.save(acc);
 
         acc = new Account();
