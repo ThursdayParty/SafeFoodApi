@@ -31,6 +31,15 @@ public class TakenFoodRestController {
 	    return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/{takenFoodId}")
+    public ResponseEntity delete(Principal principal, @PathVariable Long takenFoodId) {
+        log.info("/api/taken/{}  DELETE :: user: {}",takenFoodId , principal.getName());
+
+        String currentUserId = principal.getName();
+        takenFoodService.delete(currentUserId, takenFoodId);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<FetchAllTakenFoodResponseDto>> all(Principal principal) {
         log.info("/api/taken  GET :: user: {}", principal.getName());

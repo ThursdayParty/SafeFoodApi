@@ -13,7 +13,7 @@ public class FetchDetailQnaBoardResponseDto {
 	private Long boardId;
 	private String title;
 	private String content;
-	private String userName;
+    private String userName;
 	private LocalDateTime createdTime;
 	private Long views;
 	

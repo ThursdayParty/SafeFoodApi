@@ -32,6 +32,20 @@ public class TakenFoodService {
         takenFoodRepository.save(takenFood);
     }
 
+    public void delete(String currentUserId, Long takenFoodId) {
+        TakenFood takenFood = takenFoodRepository.findById(takenFoodId)
+                .orElseThrow(()-> new RuntimeException("섭취한 식품 정보가 없음"));
+
+        Account account = accountRepository.findByUid(currentUserId)
+                .orElseThrow(()-> new RuntimeException("해당 유저가 없음"));
+
+        if(!account.getAccountId().equals(takenFood.getAccountId())) {
+            throw new RuntimeException("일치하는 유저가 없음");
+        }
+
+        takenFoodRepository.delete(takenFood);
+    }
+
     public List<FetchAllTakenFoodResponseDto> fetchAll(String currentUserId) {
         Account currentUser = accountRepository.findByUidWithAllergies(currentUserId)
                 .orElseThrow(RuntimeException::new);

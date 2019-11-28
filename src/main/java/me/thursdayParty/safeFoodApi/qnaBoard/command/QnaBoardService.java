@@ -16,8 +16,8 @@ public class QnaBoardService {
 
 	private final QnaBoardRepository repo;
 
-	public void save(SaveQneBoardRequestDto saveQnaBoardRequestDto) {
-		repo.save(saveQnaBoardRequestDto.toEntity());
+	public void save(SaveQneBoardRequestDto saveQnaBoardRequestDto, String userId) {
+		repo.save(saveQnaBoardRequestDto.toEntity(userId));
 	}
 
 	public void update(long boardId, UpdateQnaBoardRequestDto updateQnaBoardRequestDto) {

@@ -54,7 +54,7 @@ public class QnaBoardRestController {
 	public ResponseEntity add(@RequestBody SaveQneBoardRequestDto saveQnaBoardRequestDto, Principal principal) {
 		log.info("/api/qnaBoards  POST :: ", saveQnaBoardRequestDto);
 
-		service.save(saveQnaBoardRequestDto);
+		service.save(saveQnaBoardRequestDto, principal.getName());
 		return ResponseEntity.ok().build();
 	}
 	

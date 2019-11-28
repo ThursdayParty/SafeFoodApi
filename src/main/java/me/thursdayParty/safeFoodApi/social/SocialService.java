@@ -27,8 +27,6 @@ public class SocialService {
 
     private final AccountService accountService;
 
-
-
     public UsernamePasswordAuthenticationToken doAuthentication(AccountConnection accountConnection) {
 
         if (!accountService.isExistAccount(accountConnection)) { // 신규 유저

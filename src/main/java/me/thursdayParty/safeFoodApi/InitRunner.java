@@ -33,8 +33,8 @@ public class InitRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목1", "pass1", "내용1", "pacto").toEntity());
-		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목2", "pass2", "내용2", "pacto").toEntity());
+		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목1", "내용1").toEntity("pacto"));
+		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목2", "내용2").toEntity("pacto"));
 
         Account acc = new Account();
         acc.setUid("bactoria");
