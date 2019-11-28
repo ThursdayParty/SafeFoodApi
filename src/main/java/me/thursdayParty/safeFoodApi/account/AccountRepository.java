@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    @Query("SELECT a FROM Account a JOIN FETCH a.allergies WHERE a.uid=:uid")
+    @Query("SELECT a FROM Account a LEFT JOIN FETCH a.allergies WHERE a.uid=:uid")
     Optional<Account> findByUidWithAllergies(@Param("uid") String uid);
 
     Optional<Account> findByUid(String uid);
