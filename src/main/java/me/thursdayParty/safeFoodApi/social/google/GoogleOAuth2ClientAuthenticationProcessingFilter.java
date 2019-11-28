@@ -27,7 +27,7 @@ public class GoogleOAuth2ClientAuthenticationProcessingFilter extends OAuth2Clie
     private SocialService socialService;
 
     public GoogleOAuth2ClientAuthenticationProcessingFilter(SocialService socialService) {
-        super("/login/google");
+        super("/l/g");
         this.socialService = socialService;
     }
 

@@ -12,16 +12,16 @@ import me.thursdayParty.safeFoodApi.qnaBoard.command.QnaBoard;
 @AllArgsConstructor
 public class SaveQneBoardRequestDto {
 	private String title;
-	private String boardPassword;
-	private String content;
-	private String userId;
+    private String boardPassword;
+    private String content;
+    private String userId;
 
 	public QnaBoard toEntity() {
 		return QnaBoard.builder()
 				.title(title)
-				.boardPassword(boardPassword)
+                .boardPassword(boardPassword)
 				.content(content)
-				.userId(userId)
+                .userId(userId)
 				.build();
 	}
 }

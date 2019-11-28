@@ -10,7 +10,7 @@ import me.thursdayParty.safeFoodApi.account.dto.AccountInfoResponseDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountUpdateRequestDto;
 import me.thursdayParty.safeFoodApi.social.AccountConnection;
-import org.springframework.context.annotation.Configuration;
+import me.thursdayParty.safeFoodApi.social.dto.AccessTokenRequestDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -31,9 +31,8 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String uid) throws UsernameNotFoundException {
-    	Optional<Account> byUsername = accountRepository.findByUid(uid);
-
-    	Account account = byUsername.orElseThrow(() -> new UsernameNotFoundException(uid));
+        Optional<Account> byUsername = accountRepository.findByUid(uid);
+        Account account = byUsername.orElseThrow(() -> new UsernameNotFoundException(uid));
         return new User(account.getUid(), account.getUpw(), authorities());
     }
 
@@ -42,7 +41,7 @@ public class AccountService implements UserDetailsService {
     }
 
     public Account readMember(String uid) {
-    	return accountRepository.findByUid(uid).orElseThrow(()-> new UsernameNotFoundException(uid));
+        return accountRepository.findByUid(uid).orElseThrow(()-> new UsernameNotFoundException(uid));
     }
 
     public boolean isExistAccount(AccountConnection accountConnection) {
@@ -54,6 +53,14 @@ public class AccountService implements UserDetailsService {
         account.setUid(accountConnection.getProviderId());
 
         return accountRepository.save(account);
+    }
+
+    public void saveSocialUser(AccessTokenRequestDto accessTokenRequestDto) {
+        String userId = accessTokenRequestDto.getSocialType()+"_"+accessTokenRequestDto.getId();
+
+        if (!accountRepository.findByUid(userId).isPresent()) {
+            signUp(new AccountSaveRequestDto(userId, accessTokenRequestDto.getSocialType(), accessTokenRequestDto.getName()));
+        }
     }
 
     public void signUp(AccountSaveRequestDto accountSaveRequestDto) {

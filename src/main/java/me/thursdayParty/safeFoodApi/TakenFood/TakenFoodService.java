@@ -23,7 +23,7 @@ public class TakenFoodService {
 
     public void save(String currentUserId, Long foodId) {
 
-        Account currentUser = accountRepository.findByUid(currentUserId)
+        Account currentUser = accountRepository.findByUidWithAllergies(currentUserId)
                 .orElseThrow(RuntimeException::new);
 
         TakenFood takenFood = new TakenFood();
@@ -33,13 +33,13 @@ public class TakenFoodService {
     }
 
     public List<FetchAllTakenFoodResponseDto> fetchAll(String currentUserId) {
-        Account currentUser = accountRepository.findByUid(currentUserId)
+        Account currentUser = accountRepository.findByUidWithAllergies(currentUserId)
                 .orElseThrow(RuntimeException::new);
         return takenFoodDao.findAllByAccountId(currentUser.getAccountId());
     }
 
     public List<DailyTakenFoodServiceDto> fetchDaily(String currentUserId) {
-        Account currentUser = accountRepository.findByUid(currentUserId)
+        Account currentUser = accountRepository.findByUidWithAllergies(currentUserId)
                 .orElseThrow(RuntimeException::new);
 
         List<String> userAllergies = currentUser.getAllergies();

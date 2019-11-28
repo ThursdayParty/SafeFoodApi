@@ -33,8 +33,8 @@ public class InitRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목1", "pass1", "내용1", "user1").toEntity());
-		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목2", "pass2", "내용2", "user2").toEntity());
+		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목1", "pass1", "내용1", "pacto").toEntity());
+		qnaBoardRepository.save(new SaveQneBoardRequestDto("제목2", "pass2", "내용2", "pacto").toEntity());
 
         Account acc = new Account();
         acc.setUid("bactoria");
@@ -52,6 +52,22 @@ public class InitRunner implements ApplicationRunner {
         acc.setUname("팍토");
         accountRepository.save(acc);
 
-	}
+        acc = new Account();
+        acc.setUid("pacto2");
+        acc.setUemail("testuser@gmail.com");
+        acc.setUpw(passwordEncoder.encode("pas"));
+        acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
+        acc.setUname("팍토");
+        accountRepository.save(acc);
+
+        acc = new Account();
+        acc.setUid("google_105280303698738460000");
+        acc.setUemail("testuser@gmail.com");
+        acc.setUpw(passwordEncoder.encode("google"));
+        acc.setAllergies(new ArrayList<>(Arrays.asList("대두", "땅콩")));
+        acc.setUname("팍토");
+        accountRepository.save(acc);
+
+    }
 
 }

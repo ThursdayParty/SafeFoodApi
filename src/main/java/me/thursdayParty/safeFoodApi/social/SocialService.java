@@ -7,6 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,11 +20,14 @@ import java.util.List;
  */
 
 
-@Component
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class SocialService {
 
     private final AccountService accountService;
+
+
 
     public UsernamePasswordAuthenticationToken doAuthentication(AccountConnection accountConnection) {
 

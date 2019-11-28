@@ -111,9 +111,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private Filter ssoFilter(ClientResources client, OAuth2ClientAuthenticationProcessingFilter filter) {
         OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(client.getClient(), oauth2ClientContext);
         filter.setRestTemplate(restTemplate);
+
         UserInfoTokenServices tokenServices = new UserInfoTokenServices(client.getResource().getUserInfoUri(), client.getClient().getClientId());
         filter.setTokenServices(tokenServices);
         tokenServices.setRestTemplate(restTemplate);
+
         return filter;
     }
 

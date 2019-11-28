@@ -8,6 +8,6 @@ import me.thursdayParty.safeFoodApi.qnaBoard.query.dto.PasswordCheckResponseDto;
 
 public interface QnaBoardDao {
 	List<FetchAllQnaBoardResponseDto> findAll();
-	FetchDetailQnaBoardResponseDto findById(long boardId);
+	FetchDetailQnaBoardResponseDto findQnaBoardDetailByBoardId(long boardId);
 	PasswordCheckResponseDto isMatchPassword(long boardId, String boardPassword);
 }

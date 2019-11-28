@@ -23,7 +23,7 @@ public class FetchQnaBoardService {
 
 	public FetchDetailQnaBoardResponseDto fetchDetail(long boardId) {
 		service.visit(boardId);
-		FetchDetailQnaBoardResponseDto boardDetail = dao.findById(boardId);
+		FetchDetailQnaBoardResponseDto boardDetail = dao.findQnaBoardDetailByBoardId(boardId);
 		return boardDetail;
 	}
 

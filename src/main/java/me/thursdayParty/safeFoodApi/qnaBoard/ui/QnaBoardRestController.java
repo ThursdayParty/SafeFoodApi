@@ -1,5 +1,6 @@
 package me.thursdayParty.safeFoodApi.qnaBoard.ui;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -50,8 +51,9 @@ public class QnaBoardRestController {
 	}
 	
 	@PostMapping
-	public ResponseEntity add(@RequestBody SaveQneBoardRequestDto saveQnaBoardRequestDto) {
+	public ResponseEntity add(@RequestBody SaveQneBoardRequestDto saveQnaBoardRequestDto, Principal principal) {
 		log.info("/api/qnaBoards  POST :: ", saveQnaBoardRequestDto);
+
 		service.save(saveQnaBoardRequestDto);
 		return ResponseEntity.ok().build();
 	}

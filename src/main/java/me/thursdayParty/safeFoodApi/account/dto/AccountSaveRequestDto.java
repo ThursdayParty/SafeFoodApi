@@ -1,5 +1,6 @@
 package me.thursdayParty.safeFoodApi.account.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -22,6 +23,12 @@ public class AccountSaveRequestDto {
     private String password;
     private String name;
     private List<String> allergies;
+
+    public AccountSaveRequestDto(String id, String password, String name) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
+    }
 
     public Account toEntity() {
         Account a = new Account();
