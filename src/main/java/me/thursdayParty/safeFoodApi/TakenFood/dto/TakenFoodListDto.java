@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 public class TakenFoodListDto {
+    private Long takenFoodId;
     private Long foodId;
     private String name;
     private String maker;
@@ -25,6 +26,7 @@ public class TakenFoodListDto {
     private LocalDateTime takenDateTime;
 
     public TakenFoodListDto(TakenFood tf, Food f) {
+        this.takenFoodId = tf.getTakenFoodId();
         this.foodId = tf.getFoodId();
         this.name = f.getName();
         this.maker = f.getMaker();

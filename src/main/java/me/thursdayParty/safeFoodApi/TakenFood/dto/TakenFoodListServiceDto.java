@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @ToString
 @NoArgsConstructor
 public class TakenFoodListServiceDto {
+    private Long takenFoodId;
     private Long foodId;
     private String name;
     private Double kcal;
@@ -25,6 +26,7 @@ public class TakenFoodListServiceDto {
     private List<String> allergiesWithUser;
 
     public TakenFoodListServiceDto(TakenFoodListDto takenFoodListDto, List<String> userAllergies) {
+        this.takenFoodId = takenFoodListDto.getTakenFoodId();
         this.foodId = takenFoodListDto.getFoodId();
         this.name = takenFoodListDto.getName();
         this.kcal = takenFoodListDto.getKcal();
