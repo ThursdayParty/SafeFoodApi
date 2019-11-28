@@ -14,7 +14,7 @@ import lombok.ToString;
 public class FetchAllQnaBoardResponseDto {
 	private Long boardId;
 	private String title;
-	private String userId;
+	private String userName;
 	private LocalDateTime createdTime;
 	private Long views;
 }

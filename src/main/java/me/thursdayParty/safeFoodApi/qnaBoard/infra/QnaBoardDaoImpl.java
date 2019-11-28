@@ -24,8 +24,8 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
     @Override
     public List<FetchAllQnaBoardResponseDto> findAll() {
         String selectQuery =
-                "select NEW "+DTO_PATH+"FetchAllQnaBoardResponseDto(qb.boardId, qb.title, qb.userId, qb.createdTime, qb.views)"+
-                " from QnaBoard qb";
+                "select NEW "+DTO_PATH+"FetchAllQnaBoardResponseDto(qb.boardId, qb.title, a.uname, qb.createdTime, qb.views)"+
+                " from QnaBoard qb inner join Account a on qb.userId=a.uid";
 
         TypedQuery<FetchAllQnaBoardResponseDto> query = em.createQuery(selectQuery, FetchAllQnaBoardResponseDto.class);
 
