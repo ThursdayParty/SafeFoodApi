@@ -57,4 +57,17 @@ public class Account {
         this.upw = password;
         this.allergies = allergies;
     }
+
+    public void updateUserInfo(String name, List<String> allergies) {
+        this.uname = name;
+        this.allergies = allergies;
+    }
+
+    public boolean isSocialAccount() {
+        return isGoogleAccount();
+    }
+
+    private boolean isGoogleAccount() {
+        return uid.startsWith("google_");
+    }
 }

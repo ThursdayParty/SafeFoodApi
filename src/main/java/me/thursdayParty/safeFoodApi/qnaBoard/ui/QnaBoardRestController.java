@@ -70,7 +70,7 @@ public class QnaBoardRestController {
 	
 	@PutMapping("/{boardId}")
 	public ResponseEntity update(@PathVariable long boardId, @RequestBody UpdateQnaBoardRequestDto updateQnaBoardRequestDto) {
-		log.info("/api/qnaBoards"+boardId+"  PUT :: ", updateQnaBoardRequestDto);
+		log.info("/api/qnaBoards/"+boardId+"  PUT :: requestDto: {}", updateQnaBoardRequestDto);
 		service.update(boardId, updateQnaBoardRequestDto);
 		return ResponseEntity.ok().build();
 	}

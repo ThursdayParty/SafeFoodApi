@@ -3,7 +3,6 @@ package me.thursdayParty.safeFoodApi.account.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import me.thursdayParty.safeFoodApi.account.Account;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +13,9 @@ import java.util.List;
  */
 
 @Getter
-@NoArgsConstructor
 @ToString
-public class AccountInfoResponseDto {
+@NoArgsConstructor
+public class SocialAccountUpdateRequestDto {
     private String name;
-    private Boolean isSocialUser;
     private List<String> allergies = new ArrayList<>();
-
-    public AccountInfoResponseDto(Account a) {
-        this.name = a.getUname();
-        this.allergies = a.getAllergies();
-        isSocialUser = a.isSocialAccount();
-    }
 }

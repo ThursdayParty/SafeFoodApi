@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import me.thursdayParty.safeFoodApi.account.dto.AccountInfoResponseDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountUpdateRequestDto;
+import me.thursdayParty.safeFoodApi.account.dto.SocialAccountUpdateRequestDto;
 import me.thursdayParty.safeFoodApi.social.AccountConnection;
 import me.thursdayParty.safeFoodApi.social.dto.AccessTokenRequestDto;
 import org.springframework.security.core.GrantedAuthority;
@@ -88,5 +89,18 @@ public class AccountService implements UserDetailsService {
         List<String> allergies = accountUpdateRequestDto.getAllergies();
 
         account.updateUserInfo(name, password, allergies);
+    }
+
+    public void updateAccount(String username, SocialAccountUpdateRequestDto socialAccountUpdateRequestDto) {
+        Account account = accountRepository.findByUid(username).orElseThrow(()->new RuntimeException("존재하지 않는 계정입니다."));
+
+        if(!account.isSocialAccount()) {
+            throw new RuntimeException("소셜 계정이 아닙니다.");
+        }
+
+        String name = socialAccountUpdateRequestDto.getName();
+        List<String> allergies = socialAccountUpdateRequestDto.getAllergies();
+
+        account.updateUserInfo(name, allergies);
     }
 }

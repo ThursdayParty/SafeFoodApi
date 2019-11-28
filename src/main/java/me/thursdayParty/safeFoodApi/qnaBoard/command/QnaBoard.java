@@ -8,18 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import me.thursdayParty.safeFoodApi.food.Food;
 import me.thursdayParty.safeFoodApi.qnaBoard.ui.dto.UpdateQnaBoardRequestDto;
 
 @Builder 
 @Entity
 @Getter @Setter
+@ToString
 @EqualsAndHashCode(of = "boardId")
 @NoArgsConstructor
 @AllArgsConstructor

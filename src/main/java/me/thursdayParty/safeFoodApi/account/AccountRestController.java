@@ -54,9 +54,18 @@ public class AccountRestController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/social")
+    public ResponseEntity update(Principal principal, @RequestBody SocialAccountUpdateRequestDto socialAccountUpdateRequestDto) {
+        log.info("/api/account/social PUT :: user: {}, requestDto: {}", principal.getName(), socialAccountUpdateRequestDto);
+
+        String username = principal.getName();
+        accountService.updateAccount(username, socialAccountUpdateRequestDto);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/currentUser")
     public ResponseEntity<AccountInfoResponseDto> current(Principal principal) {
-        log.info("/api/account/current GET :: user: {}", principal.getName());
+        log.info("/api/account/currentUser GET :: user: {}", principal.getName());
 
         String username = principal.getName();
         AccountInfoResponseDto body = accountService.fetchAccountInfo(username);
