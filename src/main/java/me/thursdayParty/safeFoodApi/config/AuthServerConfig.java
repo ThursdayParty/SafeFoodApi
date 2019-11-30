@@ -53,12 +53,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .tokenStore(tokenStore())
                 .approvalStore(approvalStore());
 
-/*
         endpoints
-                    .pathMapping("/oauth/token", "/api/oauth/token");
-필요할텐데 일단 블로깅해보자. oauth/token 경로 바꾸는 방법임.
-*/
-
+                    .pathMapping("/oauth/token", "/api/login");
     }
 
     @Bean
