@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/foods")

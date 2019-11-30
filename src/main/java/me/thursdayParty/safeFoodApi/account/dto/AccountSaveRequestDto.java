@@ -1,12 +1,10 @@
 package me.thursdayParty.safeFoodApi.account.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import me.thursdayParty.safeFoodApi.account.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

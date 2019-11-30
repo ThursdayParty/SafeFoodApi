@@ -22,8 +22,6 @@ import javax.sql.DataSource;
  * @since 2019-11-24 [2019.11월.24]
  */
 
-
-
 @Configuration
 @RequiredArgsConstructor
 @EnableAuthorizationServer

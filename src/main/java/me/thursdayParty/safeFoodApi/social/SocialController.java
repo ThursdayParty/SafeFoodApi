@@ -28,13 +28,6 @@ public class SocialController {
 
     private final AccountService accountService;
 
-    @GetMapping("/")
-    public Principal home(Principal principal) {
-        System.out.println(principal.getName());
-
-        return principal;
-    }
-
     @PostMapping("/api/login/google")
     public ResponseEntity home(@RequestBody AccessTokenRequestDto accessTokenRequestDto) {
         log.info("/api/login/google POST :: requestDto: {}", accessTokenRequestDto);

@@ -43,9 +43,6 @@ public class Account {
 	
 	@UpdateTimestamp
 	private LocalDateTime updatedate;
-	
-	@Enumerated(EnumType.STRING)
-	private AccountRole role;
 
     @ElementCollection
     @CollectionTable(name = "allergy", joinColumns = @JoinColumn(name = "account_id"))

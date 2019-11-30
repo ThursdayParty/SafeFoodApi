@@ -1,16 +1,10 @@
 package me.thursdayParty.safeFoodApi.account;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import me.thursdayParty.safeFoodApi.account.dto.AccountInfoResponseDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountSaveRequestDto;
 import me.thursdayParty.safeFoodApi.account.dto.AccountUpdateRequestDto;
 import me.thursdayParty.safeFoodApi.account.dto.SocialAccountUpdateRequestDto;
-import me.thursdayParty.safeFoodApi.social.AccountConnection;
 import me.thursdayParty.safeFoodApi.social.dto.AccessTokenRequestDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +15,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -42,22 +41,11 @@ public class AccountService implements UserDetailsService {
     }
 
     public Account readMember(String uid) {
-        return accountRepository.findByUid(uid).orElseThrow(()-> new UsernameNotFoundException(uid));
-    }
-
-    public boolean isExistAccount(AccountConnection accountConnection) {
-        return false;
-    }
-
-    public Account signUpWithSocial(AccountConnection accountConnection) {
-        Account account = new Account();
-        account.setUid(accountConnection.getProviderId());
-
-        return accountRepository.save(account);
+        return accountRepository.findByUid(uid).orElseThrow(() -> new UsernameNotFoundException(uid));
     }
 
     public void saveSocialUser(AccessTokenRequestDto accessTokenRequestDto) {
-        String userId = accessTokenRequestDto.getSocialType()+"_"+accessTokenRequestDto.getId();
+        String userId = accessTokenRequestDto.getSocialType() + "_" + accessTokenRequestDto.getId();
 
         if (!accountRepository.findByUid(userId).isPresent()) {
             signUp(new AccountSaveRequestDto(userId, accessTokenRequestDto.getSocialType(), accessTokenRequestDto.getName()));
@@ -92,9 +80,9 @@ public class AccountService implements UserDetailsService {
     }
 
     public void updateAccount(String username, SocialAccountUpdateRequestDto socialAccountUpdateRequestDto) {
-        Account account = accountRepository.findByUid(username).orElseThrow(()->new RuntimeException("존재하지 않는 계정입니다."));
+        Account account = accountRepository.findByUid(username).orElseThrow(() -> new RuntimeException("존재하지 않는 계정입니다."));
 
-        if(!account.isSocialAccount()) {
+        if (!account.isSocialAccount()) {
             throw new RuntimeException("소셜 계정이 아닙니다.");
         }
 

@@ -25,7 +25,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .mvcMatchers("/api/taken").authenticated()
                 .mvcMatchers(HttpMethod.POST, "/api/qnaBoards").authenticated()
                 .mvcMatchers(HttpMethod.GET, "/user").authenticated()
-//                .mvcMatchers(HttpMethod.GET, "/login").authenticated()
                 .anyRequest().permitAll()
                 ;
 
