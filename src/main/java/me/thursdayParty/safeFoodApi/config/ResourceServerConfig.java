@@ -20,11 +20,19 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .mvcMatchers(HttpMethod.POST, "/oauth/token").not().authenticated()
-                .mvcMatchers(HttpMethod.GET, "/login/google").not().authenticated()
+
+                .mvcMatchers(HttpMethod.GET, "/api/account/currentUser").authenticated()
+                .mvcMatchers(HttpMethod.PUT, "/api/account/**").authenticated()
+
+                .mvcMatchers(HttpMethod.POST, "/api/login").not().authenticated()
+                .mvcMatchers(HttpMethod.POST, "/api/social/login").not().authenticated()
+
                 .mvcMatchers("/api/taken").authenticated()
+
                 .mvcMatchers(HttpMethod.POST, "/api/qnaBoards").authenticated()
-                .mvcMatchers(HttpMethod.GET, "/user").authenticated()
+                .mvcMatchers(HttpMethod.PUT, "/api/qnaBoards").authenticated()
+                .mvcMatchers(HttpMethod.DELETE, "/api/qnaBoards").authenticated()
+
                 .anyRequest().permitAll()
                 ;
 
