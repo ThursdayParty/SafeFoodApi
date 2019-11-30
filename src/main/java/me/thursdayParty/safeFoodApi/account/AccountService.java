@@ -44,14 +44,6 @@ public class AccountService implements UserDetailsService {
         return accountRepository.findByUid(uid).orElseThrow(() -> new UsernameNotFoundException(uid));
     }
 
-    public void saveSocialUser(AccessTokenRequestDto accessTokenRequestDto) {
-        String userId = accessTokenRequestDto.getSocialType() + "_" + accessTokenRequestDto.getId();
-
-        if (!accountRepository.findByUid(userId).isPresent()) {
-            signUp(new AccountSaveRequestDto(userId, accessTokenRequestDto.getSocialType(), accessTokenRequestDto.getName()));
-        }
-    }
-
     public void signUp(AccountSaveRequestDto accountSaveRequestDto) {
         Account account = accountSaveRequestDto.toEntity();
         account.setUpw(passwordEncoder.encode(account.getUpw()));
@@ -59,9 +51,13 @@ public class AccountService implements UserDetailsService {
     }
 
     public void checkDuplication(String accountId) {
-        if (accountRepository.findByUid(accountId).isPresent()) {
+        if (isAlreadyExistUid(accountId)) {
             throw new RuntimeException("아이디가 이미 존재");
         }
+    }
+
+    public boolean isAlreadyExistUid(String accountId) {
+        return accountRepository.findByUid(accountId).isPresent();
     }
 
     public AccountInfoResponseDto fetchAccountInfo(String username) {
