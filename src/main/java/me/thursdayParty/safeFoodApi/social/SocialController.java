@@ -35,9 +35,9 @@ public class SocialController {
         return principal;
     }
 
-    @PostMapping("/auth/google")
+    @PostMapping("/api/login/google")
     public ResponseEntity home(@RequestBody AccessTokenRequestDto accessTokenRequestDto) {
-        log.info("/auth/google POST :: requestDto: {}", accessTokenRequestDto);
+        log.info("/api/login/google POST :: requestDto: {}", accessTokenRequestDto);
 
         accountService.saveSocialUser(accessTokenRequestDto);
 
