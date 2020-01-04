@@ -33,3 +33,6 @@ google :
       - profile
   resource:
     userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+
+url:
+  login: http://localhost:9090/api/login
